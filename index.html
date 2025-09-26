@@ -17,9 +17,11 @@
         }
         
         /* Desktop Layout (Default: Grid structure) */
+        /* التعديل هنا: استخدام grid-cols-[80px_1fr_300px] لضمان الترتيب: Sidebar | Content | Profile */
         .main-container {
             display: grid;
-            grid-template-columns: 80px 1fr 300px; /* Sidebar | Content | Profile */
+            grid-template-columns: 80px 1fr 300px; 
+            min-height: 100vh; /* لضمان أن الـ sticky sidebar تغطي الشاشة بالكامل */
         }
 
         /* Hide Mobile specific sections by default */
@@ -29,18 +31,18 @@
         }
 
         .sidebar-desktop {
-            background-color: rgba(247, 245, 242, 0.5);
+            background-color: rgba(247, 245, 242, 0.9); /* زودت الأوباسيتي شوية عشان تكون واضحة */
             backdrop-filter: blur(10px);
-            border-top-right-radius: 20px;
-            border-bottom-right-radius: 20px;
+            /* شيلت border-radius عشان ما يتعارضش مع الـ sticky والـ full height */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05); /* ظل خفيف على اليمين */
             position: sticky;
             top: 0;
             height: 100vh;
+            z-index: 20; /* عشان تكون فوق المحتوى لو فيه تداخل */
         }
 
         .profile-section-desktop {
@@ -51,13 +53,12 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            /* تم إصلاح المشكلة هنا: يجب أن يكون position: sticky للتثبيت */
             position: sticky; 
             top: 0;
-            right: 0;
-            height: 100vh;
-            width: 300px;
-            overflow-y: auto;
+            height: 100vh; /* لازم تكون 100vh عشان الـ sticky تشتغل صح على الشاشة كلها */
+            overflow-y: auto; /* مهم عشان محتوى الـ Profile ما يخرجش برا لو زاد */
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 20;
         }
         
         /* Mobile Layout Override (max-width: 1024px) */
@@ -130,6 +131,7 @@
             padding: 15px;
             border-radius: 50%;
             margin: 15px 0;
+            position: relative;
         }
         .sidebar-icon.active {
             color: #ef4444;
@@ -138,10 +140,22 @@
         }
         .sidebar-icon:hover {
             color: #ef4444;
+            background-color: rgba(255, 255, 255, 0.2);
         }
+        .sidebar-mobile .sidebar-icon {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .sidebar-mobile .sidebar-icon.active {
+             background-color: rgba(239, 68, 68, 0.1); /* ظل أحمر خفيف للموبايل */
+        }
+
         .content-section {
             background-color: #fcfbf8;
             padding: 50px 80px;
+            min-height: 100vh; /* لضمان أن الـ scroll موجود */
+            overflow-x: hidden; /* لمنع الـ horizontal scroll */
         }
         
         .profile-section-desktop img,
@@ -160,18 +174,34 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .skill-bar {
-            width: 0%;
-            transition: width 1.5s ease-out;
-        }
-        .skill-bar.filled {
-            width: var(--skill-percent);
-        }
+        /* Styles for project cards and modals were kept as is */
         .divider {
             height: 1px;
             background-color: #ddd;
             margin: 80px 0;
         }
+        .project-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .project-card:active {
+            transform: translateY(0);
+        }
+        
+        .project-card .fas, .project-card .fab {
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .fas, 
+        .project-card:hover .fab {
+            transform: translateY(-5px) scale(1.1);
+            color: #ef4444;
+        }
+
         /* Modal Styles */
         .modal {
             position: fixed;
@@ -217,38 +247,17 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
-        /* Project Card Hover Effects */
-        .project-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        .project-card:active {
-            transform: translateY(0);
-        }
-        
-        .project-card .fas, .project-card .fab {
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .fas, 
-        .project-card:hover .fab {
-            transform: translateY(-5px) scale(1.1); /* Bounce/Jump effect on icon */
-            color: #ef4444; /* Change icon color on hover */
-        }
     </style>
 </head>
 <body class="antialiased">
     
     <!-- Main Container for All Devices -->
+    <!-- تم إزالة كلاس lg:grid من هنا لأننا استخدمنا .main-container في الـ CSS مباشرة لتحديد الـ Grid -->
     <div class="main-container">
         
         <!-- 1. Sidebar for Desktop (Left Column - T1) -->
         <div class="sidebar-desktop hidden lg:flex">
+            <!-- Icon Links -->
             <a href="#welcome" class="sidebar-icon active" data-section="welcome">
                 <i class="fas fa-home text-2xl"></i>
             </a>
@@ -270,6 +279,7 @@
         </div>
         
         <!-- 2. Main Content (Center Column - T2) -->
+        <!-- المحتوى الرئيسي للملف الشخصي -->
         <div class="content-section">
 
             <!-- Profile Section for Mobile (Shown only on small screens) -->
@@ -308,10 +318,10 @@
                 <h1 class="text-5xl font-extrabold text-gray-800 mb-6">About Me</h1>
                 <p class="text-lg text-gray-600 mb-8">
                     Highly motivated Electrical Engineering undergraduate with a strong passion for the
-                     power industry seeking to leverage my academic foundation and leadership skills to gain
-                     valuable experience in electricity generation, transmission systems, Control systems and
-                     sustainable and renewable energy. Eager to contribute to a team environment and learn
-                     from experienced professionals.
+                    power industry seeking to leverage my academic foundation and leadership skills to gain
+                    valuable experience in electricity generation, transmission systems, Control systems and
+                    sustainable and renewable energy. Eager to contribute to a team environment and learn
+                    from experienced professionals.
                 </p>
                 
                 <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">Personal Info</h2>
@@ -631,7 +641,7 @@
         <!-- 3. Profile Section for Desktop (Right Column - T3) -->
         <div class="profile-section-desktop hidden lg:flex">
             <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
-            <h2 class="text-2xl font-bold mb-2">Kerolos Emad</p>
+            <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
             <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
             <p class="text-sm text-gray-400 mb-6 max-w-[250px]">
                 A passionate engineer with a strong background in electrical systems and a growing expertise in web development.
@@ -643,6 +653,7 @@
                 
                 <a href="https://github.com/keroalkesk-stack" class="hover:text-white transition-colors duration-300"><i class="fab fa-github"></i></a>
             </div>
+            <!-- ممكن تضيف هنا باقي محتوى الـ profile لو فيه معلومات تانية عايز تعرضها -->
         </div>
 
         <!-- Sidebar for Mobile (Fixed at bottom) -->
@@ -666,9 +677,10 @@
                 <i class="fas fa-envelope text-xl"></i>
             </a>
         </div>
+        
     </div>
     
-    <!-- Modals for Projects -->
+    <!-- Modals for Projects (No changes here) -->
     <div id="project1-modal" class="modal">
         <div class="modal-content">
             <span class="close-button" onclick="document.getElementById('project1-modal').style.display = 'none';">&times;</span>
@@ -742,6 +754,7 @@
             const sidebarIcons = document.querySelectorAll('.sidebar-icon');
             const lazyContent = document.querySelectorAll('.lazy-content');
             
+            // Observer options for detecting which section is currently in the middle of the viewport
             const observerOptions = {
                 root: null,
                 rootMargin: '-50% 0px -50% 0px',
@@ -788,7 +801,7 @@
             });
 
 
-            // Lazy load content
+            // Lazy load content (for fade-in effect)
             const lazyObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -810,6 +823,11 @@
                     const modal = document.getElementById(projectId + '-modal');
                     if (modal) {
                         modal.style.display = 'flex';
+                        // Pause all videos when a modal is opened
+                        document.querySelectorAll('video').forEach(vid => vid.pause());
+                        // If the modal contains a video, play it
+                        const modalVideo = modal.querySelector('video');
+                        if (modalVideo) modalVideo.play();
                     }
                 });
             });
@@ -817,13 +835,22 @@
             const closeButtons = document.querySelectorAll('.close-button');
             closeButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    button.closest('.modal').style.display = 'none';
+                    const modal = button.closest('.modal');
+                    if(modal) {
+                        modal.style.display = 'none';
+                        // Pause video when modal is closed
+                        const modalVideo = modal.querySelector('video');
+                        if (modalVideo) modalVideo.pause();
+                    }
                 });
             });
 
             window.addEventListener('click', (event) => {
                 if (event.target.classList.contains('modal')) {
                     event.target.style.display = 'none';
+                    // Pause video when clicking outside the modal
+                    const modalVideo = event.target.querySelector('video');
+                    if (modalVideo) modalVideo.pause();
                 }
             });
         });
