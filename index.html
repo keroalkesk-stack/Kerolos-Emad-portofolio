@@ -72,8 +72,8 @@
                 padding-right: 0;
             }
             .content-section {
-                /* تم تعديل الـ padding هنا ليكون أقل على الموبايل */
-                padding: 20px 10px; 
+                /* تم تعديل الـ padding هنا ليكون أقل على الموبايل ليملأ الشاشة */
+                padding: 20px; /* رجعت الـ padding الافتراضي 20px من كل الجوانب */
                 order: 2;
             }
             
@@ -94,7 +94,8 @@
             }
 
             .content-section {
-                padding: 20px 10px; 
+                /* هذا الكلاس يحدد الـ padding على الموبايل ليملأ المحتوى */
+                padding: 20px; 
             }
         }
         
@@ -811,10 +812,7 @@
 
 
             // Lazy load content (for fade-in effect)
-            /* التعديل هنا: استخدام rootMargin أكبر (500px) في الهوامش السلبية (top/bottom) 
-                لتشغيل الـ Intersection Observer بمجرد أن يقترب المحتوى من الظهور.
-                Threshold تم زيادته لـ 0.5 للمحتوى الطويل.
-            */
+            /* التعديل هنا: استخدام rootMargin أكبر لتشغيل الـ Intersection Observer بمجرد أن يقترب المحتوى من الظهور. */
             const lazyObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
