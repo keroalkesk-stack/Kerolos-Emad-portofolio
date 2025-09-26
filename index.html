@@ -13,6 +13,7 @@
         body {
             font-family: 'Inter', sans-serif;
             background-color: #e5e5e5;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
         .main-container {
             display: grid;
@@ -20,32 +21,42 @@
         }
         @media (max-width: 1024px) {
             .main-container {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr auto;
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 70px; /* Space for the fixed sidebar at the bottom */
             }
             .content-section {
                 padding-left: 20px;
                 padding-right: 20px;
+                order: 2;
             }
             .profile-section {
                 padding: 20px;
-            }
-            .sidebar {
-                display: flex;
-                justify-content: space-around;
+                position: static;
                 width: 100%;
                 height: auto;
-                background-color: rgba(247, 245, 242, 0.5);
-                border-radius: 0;
-                backdrop-filter: blur(10px);
+                order: 1;
+            }
+            .sidebar {
                 position: fixed;
                 bottom: 0;
                 top: auto;
+                left: 0;
+                right: 0;
+                height: auto;
+                background-color: rgba(247, 245, 242, 0.9);
+                border-radius: 0;
+                backdrop-filter: blur(10px);
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100%;
                 z-index: 50;
                 box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
             }
             .sidebar-icon {
                 padding: 10px;
+                margin: 0;
             }
         }
         .sidebar {
@@ -90,7 +101,7 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            position: fixed;
+            position: sticky;
             top: 0;
             right: 0;
             height: 100vh;
@@ -98,18 +109,6 @@
             overflow-y: auto;
         }
         @media (max-width: 1024px) {
-            .profile-section {
-                position: static;
-                width: 100%;
-                height: auto;
-            }
-            .main-container {
-                display: flex;
-                flex-direction: column;
-            }
-            .content-section {
-                order: 2;
-            }
             .profile-section {
                 order: 1;
             }
@@ -161,8 +160,8 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 80%;
-            max-height: 80%;
+            max-width: 90%;
+            max-height: 90%;
             overflow-y: auto;
             position: relative;
         }
@@ -264,100 +263,100 @@
                 
                 <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">Education</h2>
                 <div class="space-y-6 text-gray-700">
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">B.Sc. in Electrical Power Engineering</p>
                             <p class="font-medium text-gray-600">Beni-Suef University</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2020 - 2025</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2020 - 2025</p>
                     </div>
                 </div>
 
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 mt-12">Trainings & Courses</h2>
                 <div class="space-y-8 text-gray-700">
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">Distribution Diploma</p>
                             <p class="mt-2 text-sm text-gray-600">Completed a specialized Distribution diploma, focusing on electrical power systems in building environments. Gained proficiency in AutoCAD and Dialux Evo for designing and simulating electrical layouts, and honed skills in Excel.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2022</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2022</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">Training at Al-Wajh Al-Qibli Electricity Production Company</p>
                             <p class="mt-2 text-sm text-gray-600">Gained comprehensive understanding of the electricity generation process, from initial power plant operations to high-voltage transmission for distribution.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2023</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">Training at South Helwan Electricity Production Company</p>
                             <p class="mt-2 text-sm text-gray-600">Enhanced understanding of power plant equipment like the transformer and switch gear and switch yard and how it works and maintenance.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2023</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">Training at Elkorymat station Electricity Production Company</p>
                             <p class="mt-2 text-sm text-gray-600">Developed a strong understanding of the interplay between steam and gas turbine operations in the electricity generation process.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2023</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">Introduction to Artificial Intelligence and Applications at ZEWAIL CITY</p>
                             <p class="mt-2 text-sm text-gray-600">Explored the history and core concepts of Al, while equipping me with Python coding skills and project management tools.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2023</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">First Arab Virtual Forum on Sustainability & Renewable Energy</p>
                             <p class="mt-2 text-sm text-gray-600">An intensive program that equipped me with a deep understanding of solar and wind energy, including maintenance procedures, necessary calculations, and the integration of these technologies into hybrid systems.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2023</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">SMC Company for Solar Panels Training</p>
                             <p class="mt-2 text-sm text-gray-600">Provided a comprehensive understanding of on-grid and off-grid solar panel systems, pump applications, and inverter functionality.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2024</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">GIZA CABLES gc3 Training</p>
                             <p class="mt-2 text-sm text-gray-600">Offered a comprehensive understanding of cable production, from raw materials to finished products, and exploring cable families.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2024</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">Schneider Electric Global Student Experience</p>
                             <p class="mt-2 text-sm text-gray-600">Completed the Supply Chain Learning Track, gaining comprehensive knowledge in manufacturing processes, logistics management, and supply chain transformations.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2024</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">Middle Egypt Electricity Distribution Company Internship</p>
                             <p class="mt-2 text-sm text-gray-600">Gained hands-on experience with cables, transformers, medium and low transmission lines, and other electrical distribution equipment.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2024</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">HA Group Automation and Control Course</p>
                             <p class="mt-2 text-sm text-gray-600">Gained knowledge in Classic Control principles, including PLC Basic Programming, ladder logic, timers, and counters.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2024</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
                     </div>
-                    <div class="flex justify-between items-start">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <div>
                             <p class="text-lg font-semibold text-gray-800">ITI FULL STACK WEB DEVELOPMENT BY PYTHON</p>
                             <p class="mt-2 text-sm text-gray-600">Gained comprehensive knowledge in Full Stack Web Development using Python and the Django framework.</p>
                         </div>
-                        <p class="text-gray-500 text-sm">2025</p>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2025</p>
                     </div>
                 </div>
 
@@ -735,5 +734,3 @@
     </script>
 </body>
 </html>
-
-
