@@ -17,7 +17,7 @@
         }
         
         /* Desktop Layout (Default) */
-        .main-container {
+        .main-container-desktop {
             display: grid;
             grid-template-columns: 80px 1fr 300px;
         }
@@ -60,31 +60,30 @@
         
         /* Mobile Layout */
         @media (max-width: 1024px) {
-            .main-container {
+            .main-container-desktop {
+                display: none;
+            }
+            .main-container-mobile {
                 display: flex;
                 flex-direction: column;
                 padding-bottom: 70px; /* Space for the fixed sidebar at the bottom */
             }
-            
             .content-section {
                 padding-left: 20px;
                 padding-right: 20px;
                 order: 2;
             }
-            
-            .profile-section-desktop,
-            .sidebar-desktop {
-                display: none; /* Hide desktop elements on small screens */
-            }
-
             .profile-section-mobile {
                 display: flex; /* Show mobile profile section */
                 order: 1; /* Make it appear at the top on mobile */
             }
-
             .sidebar-mobile {
                 display: flex; /* Show mobile sidebar on small screens */
             }
+        }
+
+        .main-container-mobile {
+            display: none; /* Hide mobile container by default */
         }
 
         /* Sidebar for Mobile */
@@ -97,7 +96,6 @@
             background-color: rgba(247, 245, 242, 0.9);
             border-radius: 0;
             backdrop-filter: blur(10px);
-            display: none; /* Initially hidden, will be shown by media query */
             flex-direction: row;
             justify-content: space-around;
             width: 100%;
@@ -107,7 +105,6 @@
 
         /* Profile Section for Mobile */
         .profile-section-mobile {
-            display: none; /* Initially hidden, will be shown by media query */
             padding: 20px;
             width: 100%;
             height: auto;
@@ -217,11 +214,11 @@
 </head>
 <body class="antialiased">
     
-    <!-- Main Container -->
-    <div class="main-container">
+    <!-- Main Container for Desktop -->
+    <div class="main-container-desktop">
         
         <!-- Sidebar for Desktop -->
-        <div class="sidebar-desktop hidden lg:flex">
+        <div class="sidebar-desktop">
             <a href="#welcome" class="sidebar-icon active" data-section="welcome">
                 <i class="fas fa-home text-2xl"></i>
             </a>
@@ -242,26 +239,8 @@
             </a>
         </div>
         
-        <!-- Profile Section for Desktop -->
-        <div class="profile-section-desktop hidden lg:flex">
-            <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
-            <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
-            <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
-            <p class="text-sm text-gray-400 mb-6 max-w-[250px]">
-                A passionate engineer with a strong background in electrical systems and a growing expertise in web development.
-            </p>
-            <div class="flex space-x-4 text-gray-400">
-                <a href="https://www.facebook.com/share/16uxPmXJ3k/?mibextid=wwXIfr" class="hover:text-white transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/kero_fr_karas?igsh=MXQ5em0wZndqMHZ1Nw%3D%3D&utm_source=qr" class="hover:text-white transition-colors duration-300"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/kerolos-emad-rasmy-908a05240?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="hover:text-white transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
-                
-                <a href="https://github.com/keroalkesk-stack" class="hover:text-white transition-colors duration-300"><i class="fab fa-github"></i></a>
-            </div>
-        </div>
-
         <!-- Main Content -->
         <div class="content-section">
-
             <!-- Welcome Section -->
             <section id="welcome" class="content-item lazy-content flex items-center justify-center h-[calc(100vh-100px)]">
                 <div class="text-center">
@@ -602,8 +581,27 @@
             </section>
         </div>
         
+        <!-- Profile Section for Desktop -->
+        <div class="profile-section-desktop">
+            <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
+            <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
+            <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
+            <p class="text-sm text-gray-400 mb-6 max-w-[250px]">
+                A passionate engineer with a strong background in electrical systems and a growing expertise in web development.
+            </p>
+            <div class="flex space-x-4 text-gray-400">
+                <a href="https://www.facebook.com/share/16uxPmXJ3k/?mibextid=wwXIfr" class="hover:text-white transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/kero_fr_karas?igsh=MXQ5em0wZndqMHZ1Nw%3D%3D&utm_source=qr" class="hover:text-white transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/kerolos-emad-rasmy-908a05240?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="hover:text-white transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/keroalkesk-stack" class="hover:text-white transition-colors duration-300"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Container for Mobile -->
+    <div class="main-container-mobile">
         <!-- Profile Section for Mobile -->
-        <div class="profile-section-mobile hidden md:hidden">
+        <div class="profile-section-mobile">
             <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
             <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
             <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
@@ -618,8 +616,350 @@
             </div>
         </div>
 
+        <!-- Main Content -->
+        <div class="content-section">
+            <!-- Welcome Section -->
+            <section id="welcome" class="content-item lazy-content flex items-center justify-center h-[calc(100vh-100px)]">
+                <div class="text-center">
+                    <h1 class="text-6xl md:text-8xl font-extrabold text-gray-800 mb-6">Hello I'm Kerolos</h1>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8">
+                        A highly motivated graduated Electrical Engineering with a strong passion for the power industry, web and app development.
+                    </p>
+                    <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105" onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });">
+                        HIRE ME
+                    </button>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- About Me Section -->
+            <section id="about-me" class="content-item lazy-content">
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-6">About Me</h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    Highly motivated Electrical Engineering undergraduate with a strong passion for the
+                     power industry seeking to leverage my academic foundation and leadership skills to gain
+                     valuable experience in electricity generation, transmission systems, Control systems and
+                     sustainable and renewable energy. Eager to contribute to a team environment and learn
+                     from experienced professionals.
+                </p>
+                
+                <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">Personal Info</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
+                    <p><strong>Name:</strong> Kerolos Emad Rasmy</p>
+                    <p><strong>Overall Rating:</strong> B+</p>
+                    <p><strong>Residence:</strong> Beni Suef, Egypt</p>
+                    <p><strong>Email:</strong> Keroalkesk@gmail.com</p>
+                    <p><strong>Phone:</strong> +20 122 531 7233</p>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- Resume Section -->
+            <section id="resume" class="content-item lazy-content">
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-8">Resume</h1>
+                
+                <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">Education</h2>
+                <div class="space-y-6 text-gray-700">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">B.Sc. in Electrical Power Engineering</p>
+                            <p class="font-medium text-gray-600">Beni-Suef University</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2020 - 2025</p>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 mt-12">Trainings & Courses</h2>
+                <div class="space-y-8 text-gray-700">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">Distribution Diploma</p>
+                            <p class="mt-2 text-sm text-gray-600">Completed a specialized Distribution diploma, focusing on electrical power systems in building environments. Gained proficiency in AutoCAD and Dialux Evo for designing and simulating electrical layouts, and honed skills in Excel.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2022</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">Training at Al-Wajh Al-Qibli Electricity Production Company</p>
+                            <p class="mt-2 text-sm text-gray-600">Gained comprehensive understanding of the electricity generation process, from initial power plant operations to high-voltage transmission for distribution.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">Training at South Helwan Electricity Production Company</p>
+                            <p class="mt-2 text-sm text-gray-600">Enhanced understanding of power plant equipment like the transformer and switch gear and switch yard and how it works and maintenance.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">Training at Elkorymat station Electricity Production Company</p>
+                            <p class="mt-2 text-sm text-gray-600">Developed a strong understanding of the interplay between steam and gas turbine operations in the electricity generation process.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">Introduction to Artificial Intelligence and Applications at ZEWAIL CITY</p>
+                            <p class="mt-2 text-sm text-gray-600">Explored the history and core concepts of Al, while equipping me with Python coding skills and project management tools.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">First Arab Virtual Forum on Sustainability & Renewable Energy</p>
+                            <p class="mt-2 text-sm text-gray-600">An intensive program that equipped me with a deep understanding of solar and wind energy, including maintenance procedures, necessary calculations, and the integration of these technologies into hybrid systems.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2023</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">SMC Company for Solar Panels Training</p>
+                            <p class="mt-2 text-sm text-gray-600">Provided a comprehensive understanding of on-grid and off-grid solar panel systems, pump applications, and inverter functionality.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">GIZA CABLES gc3 Training</p>
+                            <p class="mt-2 text-sm text-gray-600">Offered a comprehensive understanding of cable production, from raw materials to finished products, and exploring cable families.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">Schneider Electric Global Student Experience</p>
+                            <p class="mt-2 text-sm text-gray-600">Completed the Supply Chain Learning Track, gaining comprehensive knowledge in manufacturing processes, logistics management, and supply chain transformations.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">Middle Egypt Electricity Distribution Company Internship</p>
+                            <p class="mt-2 text-sm text-gray-600">Gained hands-on experience with cables, transformers, medium and low transmission lines, and other electrical distribution equipment.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">HA Group Automation and Control Course</p>
+                            <p class="mt-2 text-sm text-gray-600">Gained knowledge in Classic Control principles, including PLC Basic Programming, ladder logic, timers, and counters.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2024</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                        <div>
+                            <p class="text-lg font-semibold text-gray-800">ITI FULL STACK WEB DEVELOPMENT BY PYTHON</p>
+                            <p class="mt-2 text-sm text-gray-600">Gained comprehensive knowledge in Full Stack Web Development using Python and the Django framework.</p>
+                        </div>
+                        <p class="text-gray-500 text-sm mt-2 sm:mt-0">2025</p>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 mt-12">My Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 text-gray-700">
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2">Computer Skills</h3>
+                        <ul class="list-disc list-inside">
+                            <li>Microsoft Word</li>
+                            <li>Microsoft Excel</li>
+                            <li>Microsoft Power Point</li>
+                            <li>Revit</li>
+                            <li>ETAP</li>
+                            <li>Dialux Evo</li>
+                            <li>AutoCAD</li>
+                            <li>Homer</li>
+                            <li>PVSYS</li>
+                            <li>MATLAB</li>
+                            <li>Proteus</li>
+                            <li>Factory IO</li>
+                            <li>TIA PORTAL</li>
+                            <li>Python</li>
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>JavaScript</li>
+                            <li>Visual Studio</li>
+                            <li>Django</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2">Languages</h3>
+                        <ul class="list-disc list-inside">
+                            <li>English (B2)</li>
+                            <li>Arabic (Native Speaker)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 mb-2">Interpersonal Skills</h3>
+                        <ul class="list-disc list-inside">
+                            <li>Leadership</li>
+                            <li>Time Management</li>
+                            <li>Team Player</li>
+                            <li>Problem Solving</li>
+                            <li>Work Ethics</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+
+            <!-- Graduation Project Section -->
+            <section id="graduation-project" class="content-item lazy-content">
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-8">My Graduation Project</h1>
+                <div class="space-y-12 text-gray-700">
+                    <div class="flex flex-col md:flex-row items-start space-y-6 md:space-y-0 md:space-x-8">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-seedling text-5xl text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-2xl text-gray-800 mb-2">Smart Solar-Powered Irrigation System using AI and IoT</h3>
+                            <p class="text-lg text-gray-600 mb-4">
+                                My graduation project, which combined artificial intelligence and IoT to create an intelligent system for monitoring and improving agricultural efficiency.
+                            </p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6">
+                                <!-- AI & Machine Learning Section -->
+                                <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-2 space-x-2">
+                                        <i class="fas fa-brain text-2xl text-blue-500"></i>
+                                        <h4 class="font-semibold text-xl text-gray-800">AI & Machine Learning</h4>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-4">
+                                        Developed a plant health monitoring model using image processing and machine learning techniques like K-Nearest Neighbors classifier to detect early signs of unhealthy crops.
+                                    </p>
+                                    <img src="images\photo_2025-09-26_05-32-29.jpg" alt="AI & ML Model" class="w-full rounded">
+                                </div>
+                                <!-- IoT Platform Section -->
+                                <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-2 space-x-2">
+                                        <i class="fas fa-wifi text-2xl text-cyan-500"></i>
+                                        <h4 class="font-semibold text-xl text-gray-800">IoT Platform</h4>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-4">
+                                        Built a real-time IoT platform using Raspberry Pi and camera modules, integrated with a Telegram bot for instant notifications and alerts. Incorporated weather forecasting APIs for smarter irrigation decisions.
+                                    </p>
+                                    <img src="images\photo_2025-09-26_05-33-21.jpg" alt="IoT Platform" class="w-full rounded">
+                                </div>
+                                <!-- Mobile Application & Data Storage Section -->
+                                <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-2 space-x-2">
+                                        <i class="fas fa-mobile-alt text-2xl text-purple-500"></i>
+                                        <h4 class="font-semibold text-xl text-gray-800">Mobile App & Data Storage</h4>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-4">
+                                        Implemented data storage and a mobile application through Firebase and Flutter, enabling farmers to remotely track crop health, growth progress, and environmental conditions.
+                                    </p>
+                                    <img src="images\photo_2025-09-26_05-32-02.jpg" alt="Mobile App" class="w-full rounded">
+                                </div>
+                                <!-- Sustainability Section -->
+                                <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                                    <div class="flex items-center mb-2 space-x-2">
+                                        <i class="fas fa-sun text-2xl text-yellow-500"></i>
+                                        <h4 class="font-semibold text-xl text-gray-800">Sustainability</h4>
+                                    </div>
+                                    <p class="text-gray-600 text-sm mb-4">
+                                        The entire system is powered by solar energy, making it a sustainable, cost-effective, and practical solution for remote agricultural areas.
+                                    </p>
+                                    <img src="images\photo_2025-09-26_05-32-38.jpg" alt="Solar Power" class="w-full rounded">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+
+            <!-- Other Projects Section -->
+            <section id="other-projects" class="content-item lazy-content">
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-8">My Projects</h1>
+                <p class="text-lg text-gray-600 mb-8">
+                    These are some of the small projects I have built during my studies to apply my skills in automation, electronics, and programming. Click on any project to learn more.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- PLC Project -->
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project1">
+                        <div class="flex items-center mb-4 space-x-2">
+                            <i class="fas fa-cogs text-3xl text-gray-700"></i>
+                            <h3 class="font-semibold text-xl text-gray-800">Sorting System (PLC & Factory I/O)</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">
+                            A simulation of an automated sorting system for high and low boxes.
+                        </p>
+                    </div>
+                    <!-- Proteus Project -->
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project2">
+                        <div class="flex items-center mb-4 space-x-2">
+                            <i class="fas fa-fire-extinguisher text-3xl text-gray-700"></i>
+                            <h3 class="font-semibold text-xl text-gray-800">Fire & Gas Detection</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">
+                            A circuit simulation on Proteus to detect fire and gas with visual and audio alerts.
+                        </p>
+                    </div>
+                    <!-- Arduino Project -->
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project3">
+                        <div class="flex items-center mb-4 space-x-2">
+                            <i class="fas fa-microchip text-3xl text-gray-700"></i>
+                            <h3 class="font-semibold text-xl text-gray-800">Distance Measurement (Arduino)</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">
+                            An Arduino project using an ultrasonic sensor to measure distance and display it with colored LEDs.
+                        </p>
+                    </div>
+                    <!-- AutoCAD & Dialux Evo Project -->
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project4">
+                        <div class="flex items-center mb-4 space-x-2">
+                            <i class="fas fa-building text-3xl text-gray-700"></i>
+                            <h3 class="font-semibold text-xl text-gray-800">Building Lighting & Electrical Design</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">
+                            A building design project using AutoCAD for electrical layouts and Dialux Evo for lighting calculations.
+                        </p>
+                    </div>
+                    <!-- CrispyBite Website Project -->
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project5">
+                        <div class="flex items-center mb-4 space-x-2">
+                            <i class="fas fa-utensils text-3xl text-gray-700"></i>
+                            <h3 class="font-semibold text-xl text-gray-800">CrispyBite Restaurant Website</h3>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4">
+                            A full-stack website developed to serve as the online presence for a restaurant, showcasing menu, contacts, and services.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            
+            <div class="divider"></div>
+
+            <!-- Contact Section -->
+            <section id="contact" class="content-item lazy-content">
+                <h1 class="text-5xl font-extrabold text-gray-800 mb-8">Contact Me</h1>
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center items-center max-w-lg mx-auto">
+                    <!-- Email Button -->
+                    <a href="mailto:Keroalkesk@gmail.com" class="w-full md:w-auto flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-md transition-colors duration-300">
+                        <i class="fas fa-envelope mr-2"></i>
+                        <span>Email</span>
+                    </a>
+                    <!-- WhatsApp Button -->
+                    <a href="https://wa.me/201225317233" target="_blank" class="w-full md:w-auto flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow-md transition-colors duration-300">
+                        <i class="fab fa-whatsapp mr-2"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                    <!-- Phone Call Button -->
+                    <a href="tel:+201225317233" class="w-full md:w-auto flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white font-bold py-3 px-6 rounded-full shadow-md transition-colors duration-300">
+                        <i class="fas fa-phone-alt mr-2"></i>
+                        <span>Call Me</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+        
         <!-- Sidebar for Mobile -->
-        <div class="sidebar-mobile lg:hidden">
+        <div class="sidebar-mobile">
             <a href="#welcome" class="sidebar-icon active" data-section="welcome">
                 <i class="fas fa-home text-xl"></i>
             </a>
