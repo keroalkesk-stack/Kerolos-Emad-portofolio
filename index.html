@@ -188,26 +188,37 @@
             background-color: #ddd;
             margin: 80px 0;
         }
+        /* Project Card Hover Effects */
         .project-card {
             transition: all 0.3s ease;
-            cursor: pointer;
+            cursor: pointer; /* نلغي الـ pointer عشان ما يتلخبطش مع الزرار */
+            position: relative; /* عشان الزرار يبقى مظبوط */
         }
+        /* نلغي الـ hover effect على الكارت كله عشان الزرار هو اللي ياخد الأولوية في الضغط */
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+             transform: none;
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* نرجع الظل الأساسي */
         }
-        .project-card:active {
-            transform: translateY(0);
-        }
-        
+
         .project-card .fas, .project-card .fab {
             transition: transform 0.3s ease;
         }
 
         .project-card:hover .fas, 
         .project-card:hover .fab {
-            transform: translateY(-5px) scale(1.1);
-            color: #ef4444;
+            transform: none; /* نلغي الـ icon animation من الكارت نفسه */
+            color: #6b7280; /* نرجع اللون الأساسي */
+        }
+        /* New button style */
+        .view-more-button {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+        .view-more-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
         }
 
         /* Modal Styles */
@@ -572,9 +583,14 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- PLC Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project1">
-                        <div class="flex items-center mb-4 space-x-2">
-                            <i class="fas fa-cogs text-3xl text-gray-700"></i>
-                            <h3 class="font-semibold text-xl text-gray-800">Sorting System (PLC & Factory I/O)</h3>
+                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-cogs text-3xl text-gray-700"></i>
+                                <h3 class="font-semibold text-xl text-gray-800">Sorting System (PLC & Factory I/O)</h3>
+                            </div>
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project1-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A simulation of an automated sorting system for high and low boxes.
@@ -582,9 +598,14 @@
                     </div>
                     <!-- Proteus Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project2">
-                        <div class="flex items-center mb-4 space-x-2">
-                            <i class="fas fa-fire-extinguisher text-3xl text-gray-700"></i>
-                            <h3 class="font-semibold text-xl text-gray-800">Fire & Gas Detection</h3>
+                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-fire-extinguisher text-3xl text-gray-700"></i>
+                                <h3 class="font-semibold text-xl text-gray-800">Fire & Gas Detection</h3>
+                            </div>
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project2-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A circuit simulation on Proteus to detect fire and gas with visual and audio alerts.
@@ -592,9 +613,14 @@
                     </div>
                     <!-- Arduino Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project3">
-                        <div class="flex items-center mb-4 space-x-2">
-                            <i class="fas fa-microchip text-3xl text-gray-700"></i>
-                            <h3 class="font-semibold text-xl text-gray-800">Distance Measurement (Arduino)</h3>
+                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-microchip text-3xl text-gray-700"></i>
+                                <h3 class="font-semibold text-xl text-gray-800">Distance Measurement (Arduino)</h3>
+                            </div>
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project3-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             An Arduino project using an ultrasonic sensor to measure distance and display it with colored LEDs.
@@ -602,9 +628,14 @@
                     </div>
                     <!-- AutoCAD & Dialux Evo Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project4">
-                        <div class="flex items-center mb-4 space-x-2">
-                            <i class="fas fa-building text-3xl text-gray-700"></i>
-                            <h3 class="font-semibold text-xl text-gray-800">Building Lighting & Electrical Design</h3>
+                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-building text-3xl text-gray-700"></i>
+                                <h3 class="font-semibold text-xl text-gray-800">Building Lighting & Electrical Design</h3>
+                            </div>
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project4-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A building design project using AutoCAD for electrical layouts and Dialux Evo for lighting calculations.
@@ -612,9 +643,14 @@
                     </div>
                     <!-- CrispyBite Website Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project5">
-                        <div class="flex items-center mb-4 space-x-2">
-                            <i class="fas fa-utensils text-3xl text-gray-700"></i>
-                            <h3 class="font-semibold text-xl text-gray-800">CrispyBite Restaurant Website</h3>
+                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-utensils text-3xl text-gray-700"></i>
+                                <h3 class="font-semibold text-xl text-gray-800">CrispyBite Restaurant Website</h3>
+                            </div>
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project5-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A full-stack website developed to serve as the online presence for a restaurant, showcasing menu, contacts, and services.
@@ -836,9 +872,13 @@
 
 
             // Modal functionality
+            // تم تعديل الـ Event Listener هنا ليشمل الضغط على كارت المشروع كله إذا لم يكن هناك زرار "View More"
             const projectCards = document.querySelectorAll('.project-card');
             projectCards.forEach(card => {
-                card.addEventListener('click', () => {
+                card.addEventListener('click', (e) => {
+                    // نتحقق إننا ما دوسناش على الزرار نفسه، لو دوسنا على الزرار الـ event.stopPropagation() هتمنع تفعيل الكود ده
+                    if (e.target.closest('.view-more-button')) return; 
+
                     const projectId = card.getAttribute('data-project-id');
                     const modal = document.getElementById(projectId + '-modal');
                     if (modal) {
