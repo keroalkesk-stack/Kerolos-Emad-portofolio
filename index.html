@@ -16,14 +16,12 @@
             -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
         
-        /* Desktop Layout (Default: Grid structure) */
+        /* Desktop Layout (Default) */
         .main-container {
             display: grid;
-            grid-template-columns: 80px 1fr 300px; /* Sidebar | Content | Profile */
+            grid-template-columns: 80px 1fr 300px;
         }
 
-        /* Hide Mobile specific sections by default */
-        /* التعديل هنا: هنخلي الأجزاء دي مخفية بالـ CSS العادي عشان نتحكم فيها بسهولة في الميديا كويري */
         .profile-section-mobile,
         .sidebar-mobile {
             display: none;
@@ -60,7 +58,7 @@
             overflow-y: auto;
         }
         
-        /* Mobile Layout Override */
+        /* Mobile Layout */
         @media (max-width: 1024px) {
             .main-container {
                 display: flex;
@@ -71,28 +69,21 @@
                 padding: 20px; /* Adjusted for mobile */
                 order: 2;
             }
-            
-            /* Hide Desktop elements */
             .profile-section-desktop,
             .sidebar-desktop {
-                display: none !important;
+                display: none; /* Hide desktop elements on small screens */
             }
 
-            /* Show Mobile elements */
             .profile-section-mobile {
-                display: flex !important; /* Show mobile profile section on top */
-                order: 1; 
+                display: flex; /* Show mobile profile section */
+                order: 1; /* Make it appear at the top on mobile */
             }
             .sidebar-mobile {
-                display: flex !important; /* Show mobile sidebar fixed at bottom */
-            }
-
-            .content-section {
-                padding: 20px; /* Ensures padding is correctly applied on small screens */
+                display: flex; /* Show mobile sidebar on small screens */
             }
         }
         
-        /* Sidebar for Mobile (Fixed at bottom) */
+        /* Sidebar for Mobile */
         .sidebar-mobile {
             position: fixed;
             bottom: 0;
@@ -109,7 +100,7 @@
             box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Profile Section for Mobile (Top Bar) */
+        /* Profile Section for Mobile */
         .profile-section-mobile {
             padding: 20px;
             width: 100%;
@@ -143,7 +134,12 @@
             background-color: #fcfbf8;
             padding: 50px 80px;
         }
-        
+        @media (max-width: 1024px) {
+            .content-section {
+                padding: 20px; /* Adjusted for mobile */
+            }
+        }
+
         .profile-section-desktop img,
         .profile-section-mobile img {
             border: 4px solid white;
@@ -217,29 +213,6 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-
-        /* Project Card Hover Effects */
-        .project-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        }
-        .project-card:active {
-            transform: translateY(0);
-        }
-        
-        .project-card .fas, .project-card .fab {
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover .fas, 
-        .project-card:hover .fab {
-            transform: translateY(-5px) scale(1.1); /* Bounce/Jump effect on icon */
-            color: #ef4444; /* Change icon color on hover */
-        }
     </style>
 </head>
 <body class="antialiased">
@@ -289,7 +262,7 @@
         <!-- Main Content -->
         <div class="content-section">
 
-            <!-- Profile Section for Mobile (Shown only on small screens) -->
+            <!-- Profile Section for Mobile -->
             <div class="profile-section-mobile lg:hidden">
                 <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
                 <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
@@ -306,7 +279,7 @@
             </div>
 
             <!-- Welcome Section -->
-            <section id="welcome" class="content-item lazy-content flex items-center justify-center h-[calc(100vh-100px)] lg:h-auto lg:min-h-screen">
+            <section id="welcome" class="content-item lazy-content flex items-center justify-center h-[calc(100vh-100px)]">
                 <div class="text-center">
                     <h1 class="text-6xl md:text-8xl font-extrabold text-gray-800 mb-6">Hello I'm Kerolos</h1>
                     <p class="text-xl md:text-2xl text-gray-600 mb-8">
@@ -568,7 +541,7 @@
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- PLC Project -->
-                    <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project1">
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project1">
                         <div class="flex items-center mb-4 space-x-2">
                             <i class="fas fa-cogs text-3xl text-gray-700"></i>
                             <h3 class="font-semibold text-xl text-gray-800">Sorting System (PLC & Factory I/O)</h3>
@@ -578,7 +551,7 @@
                         </p>
                     </div>
                     <!-- Proteus Project -->
-                    <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project2">
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project2">
                         <div class="flex items-center mb-4 space-x-2">
                             <i class="fas fa-fire-extinguisher text-3xl text-gray-700"></i>
                             <h3 class="font-semibold text-xl text-gray-800">Fire & Gas Detection</h3>
@@ -588,7 +561,7 @@
                         </p>
                     </div>
                     <!-- Arduino Project -->
-                    <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project3">
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project3">
                         <div class="flex items-center mb-4 space-x-2">
                             <i class="fas fa-microchip text-3xl text-gray-700"></i>
                             <h3 class="font-semibold text-xl text-gray-800">Distance Measurement (Arduino)</h3>
@@ -598,7 +571,7 @@
                         </p>
                     </div>
                     <!-- AutoCAD & Dialux Evo Project -->
-                    <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project4">
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project4">
                         <div class="flex items-center mb-4 space-x-2">
                             <i class="fas fa-building text-3xl text-gray-700"></i>
                             <h3 class="font-semibold text-xl text-gray-800">Building Lighting & Electrical Design</h3>
@@ -608,7 +581,7 @@
                         </p>
                     </div>
                     <!-- CrispyBite Website Project -->
-                    <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project5">
+                    <div class="bg-white p-6 rounded-lg shadow-md cursor-pointer project-card" data-project-id="project5">
                         <div class="flex items-center mb-4 space-x-2">
                             <i class="fas fa-utensils text-3xl text-gray-700"></i>
                             <h3 class="font-semibold text-xl text-gray-800">CrispyBite Restaurant Website</h3>
@@ -645,7 +618,23 @@
             </section>
         </div>
         
-        <!-- Sidebar for Mobile (Fixed at bottom) -->
+        <!-- Profile Section for Mobile -->
+        <div class="profile-section-mobile hidden md:hidden">
+            <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
+            <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
+            <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
+            <p class="text-sm text-gray-400 mb-6 max-w-[250px]">
+                A passionate engineer with a strong background in electrical systems and a growing expertise in web development.
+            </p>
+            <div class="flex space-x-4 text-gray-400">
+                <a href="https://www.facebook.com/share/16uxPmXJ3k/?mibextid=wwXIfr" class="hover:text-white transition-colors duration-300"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/kero_fr_karas?igsh=MXQ5em0wZndqMHZ1Nw%3D%3D&utm_source=qr" class="hover:text-white transition-colors duration-300"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/kerolos-emad-rasmy-908a05240?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="hover:text-white transition-colors duration-300"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/keroalkesk-stack" class="hover:text-white transition-colors duration-300"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+
+        <!-- Sidebar for Mobile -->
         <div class="sidebar-mobile lg:hidden">
             <a href="#welcome" class="sidebar-icon active" data-section="welcome">
                 <i class="fas fa-home text-xl"></i>
@@ -751,16 +740,13 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const id = entry.target.getAttribute('id');
-                    // Find the corresponding icons in both desktop and mobile sidebars
-                    const desktopIcon = document.querySelector('.sidebar-desktop .sidebar-icon[data-section="' + id + '"]');
-                    const mobileIcon = document.querySelector('.sidebar-mobile .sidebar-icon[data-section="' + id + '"]');
+                    const icon = document.querySelector(`.sidebar-icon[data-section="${id}"]`);
 
                     if (entry.isIntersecting) {
-                        // Remove active class from all icons
-                        document.querySelectorAll('.sidebar-icon').forEach(i => i.classList.remove('active'));
-                        // Add active class to corresponding icons
-                        if (desktopIcon) desktopIcon.classList.add('active');
-                        if (mobileIcon) mobileIcon.classList.add('active');
+                        sidebarIcons.forEach(i => i.classList.remove('active'));
+                        if (icon) {
+                            icon.classList.add('active');
+                        }
                     }
                 });
             }, observerOptions);
@@ -771,7 +757,7 @@
 
 
             // Smooth scroll on sidebar icon click
-            document.querySelectorAll('.sidebar-icon').forEach(icon => {
+            sidebarIcons.forEach(icon => {
                 icon.addEventListener('click', (e) => {
                     e.preventDefault();
                     
