@@ -16,10 +16,15 @@
             -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
         
-        /* Desktop Layout */
+        /* Desktop Layout (Default) */
         .main-container {
             display: grid;
             grid-template-columns: 80px 1fr 300px;
+        }
+
+        .profile-section-mobile,
+        .sidebar-mobile {
+            display: none;
         }
 
         .sidebar-desktop {
@@ -76,6 +81,10 @@
                 display: flex; /* Show mobile profile section */
                 order: 1; /* Make it appear at the top on mobile */
             }
+
+            .sidebar-mobile {
+                display: flex; /* Show mobile sidebar on small screens */
+            }
         }
 
         /* Sidebar for Mobile */
@@ -96,12 +105,6 @@
             box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
         }
 
-        @media (max-width: 1024px) {
-            .sidebar-mobile {
-                display: flex; /* Show mobile sidebar on small screens */
-            }
-        }
-
         /* Profile Section for Mobile */
         .profile-section-mobile {
             display: none; /* Initially hidden, will be shown by media query */
@@ -115,7 +118,6 @@
             text-align: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
 
         /* Shared styles */
         .sidebar-icon {
