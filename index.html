@@ -230,6 +230,21 @@
             transform: translateY(-2px);
             box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
         }
+        /* New CV Button Style */
+        .cv-button {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid #ef4444; /* حدود حمراء */
+            color: #ef4444; /* لون النص أحمر */
+            background-color: white; /* خلفية بيضاء */
+        }
+        .cv-button:hover {
+            background-color: #ef4444; /* عند الهوفر تصبح الخلفية حمراء */
+            color: white; /* والنص أبيض */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
+        }
+
 
         /* Modal Styles */
         .modal {
@@ -676,7 +691,13 @@
             <!-- Contact Section -->
             <section id="contact" class="content-item lazy-content">
                 <h1 class="text-5xl font-extrabold text-gray-800 mb-8">Contact Me</h1>
-                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center items-center max-w-lg mx-auto">
+                <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 justify-center items-center max-w-xl mx-auto">
+                    <!-- CV Download Button (New) -->
+                    <!-- *** ملاحظة: يجب تغيير الرابط (href) إلى مسار ملف الـ CV الخاص بك (مثلاً: Kerolos_Emad_CV.pdf) *** -->
+                    <a href="Kerolos_Emad_CV.pdf" download class="w-full md:w-auto flex items-center justify-center cv-button font-bold py-3 px-6 rounded-full shadow-md transition-colors duration-300">
+                        <i class="fas fa-file-download mr-2"></i>
+                        <span>Download CV</span>
+                    </a>
                     <!-- Email Button -->
                     <a href="mailto:Keroalkesk@gmail.com" class="w-full md:w-auto flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-md transition-colors duration-300">
                         <i class="fas fa-envelope mr-2"></i>
