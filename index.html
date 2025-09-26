@@ -583,12 +583,13 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- PLC Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project1">
-                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-cogs text-3xl text-gray-700"></i>
-                                <h3 class="font-semibold text-xl text-gray-800">Sorting System (PLC & Factory I/O)</h3>
+                        <!-- تم التعديل: استخدام gap-4 بدلاً من space-x-2 في الأب، وإضافة flex-shrink-0 للزرار و min-w-0 للعنصرين معاً لتفادي الازدحام -->
+                        <div class="flex items-start justify-between mb-4 gap-4"> 
+                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
+                                <i class="fas fa-cogs text-3xl text-gray-700 flex-shrink-0 mt-1"></i> <!-- أضفت mt-1 لضبط محاذاة الأيقونة -->
+                                <h3 class="font-semibold text-xl text-gray-800 break-words">Sorting System (PLC & Factory I/O)</h3>
                             </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project1-modal').style.display = 'flex'; event.stopPropagation();">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project1-modal').style.display = 'flex'; event.stopPropagation();">
                                 View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </button>
                         </div>
@@ -598,12 +599,12 @@
                     </div>
                     <!-- Proteus Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project2">
-                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-fire-extinguisher text-3xl text-gray-700"></i>
-                                <h3 class="font-semibold text-xl text-gray-800">Fire & Gas Detection</h3>
+                        <div class="flex items-start justify-between mb-4 gap-4"> 
+                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
+                                <i class="fas fa-fire-extinguisher text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                                <h3 class="font-semibold text-xl text-gray-800 break-words">Fire & Gas Detection</h3>
                             </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project2-modal').style.display = 'flex'; event.stopPropagation();">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project2-modal').style.display = 'flex'; event.stopPropagation();">
                                 View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </button>
                         </div>
@@ -613,12 +614,12 @@
                     </div>
                     <!-- Arduino Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project3">
-                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-microchip text-3xl text-gray-700"></i>
-                                <h3 class="font-semibold text-xl text-gray-800">Distance Measurement (Arduino)</h3>
+                        <div class="flex items-start justify-between mb-4 gap-4">
+                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
+                                <i class="fas fa-microchip text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                                <h3 class="font-semibold text-xl text-gray-800 break-words">Distance Measurement (Arduino)</h3>
                             </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project3-modal').style.display = 'flex'; event.stopPropagation();">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project3-modal').style.display = 'flex'; event.stopPropagation();">
                                 View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </button>
                         </div>
@@ -628,12 +629,12 @@
                     </div>
                     <!-- AutoCAD & Dialux Evo Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project4">
-                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-building text-3xl text-gray-700"></i>
-                                <h3 class="font-semibold text-xl text-gray-800">Building Lighting & Electrical Design</h3>
+                        <div class="flex items-start justify-between mb-4 gap-4"> 
+                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
+                                <i class="fas fa-building text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                                <h3 class="font-semibold text-xl text-gray-800 break-words">Building Lighting & Electrical Design</h3>
                             </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project4-modal').style.display = 'flex'; event.stopPropagation();">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project4-modal').style.display = 'flex'; event.stopPropagation();">
                                 View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </button>
                         </div>
@@ -643,12 +644,12 @@
                     </div>
                     <!-- CrispyBite Website Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project5">
-                        <div class="flex items-center justify-between mb-4 space-x-2"> <!-- تعديل: إضافة justify-between -->
-                            <div class="flex items-center space-x-2">
-                                <i class="fas fa-utensils text-3xl text-gray-700"></i>
-                                <h3 class="font-semibold text-xl text-gray-800">CrispyBite Restaurant Website</h3>
+                        <div class="flex items-start justify-between mb-4 gap-4"> 
+                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
+                                <i class="fas fa-utensils text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                                <h3 class="font-semibold text-xl text-gray-800 break-words">CrispyBite Restaurant Website</h3>
                             </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold p-2 rounded-full" onclick="document.getElementById('project5-modal').style.display = 'flex'; event.stopPropagation();">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project5-modal').style.display = 'flex'; event.stopPropagation();">
                                 View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
                             </button>
                         </div>
