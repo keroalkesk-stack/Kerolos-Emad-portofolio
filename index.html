@@ -16,12 +16,14 @@
             -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
         
-        /* Desktop Layout (Default) */
+        /* Desktop Layout (Default: Grid structure) */
         .main-container {
             display: grid;
-            grid-template-columns: 80px 1fr 300px;
+            grid-template-columns: 80px 1fr 300px; /* Sidebar | Content | Profile */
         }
 
+        /* Hide Mobile specific sections by default */
+        /* التعديل هنا: هنخلي الأجزاء دي مخفية بالـ CSS العادي عشان نتحكم فيها بسهولة في الميديا كويري */
         .profile-section-mobile,
         .sidebar-mobile {
             display: none;
@@ -58,7 +60,7 @@
             overflow-y: auto;
         }
         
-        /* Mobile Layout */
+        /* Mobile Layout Override */
         @media (max-width: 1024px) {
             .main-container {
                 display: flex;
@@ -69,17 +71,20 @@
                 padding: 20px; /* Adjusted for mobile */
                 order: 2;
             }
+            
+            /* Hide Desktop elements */
             .profile-section-desktop,
             .sidebar-desktop {
-                display: none !important; /* Hide desktop elements on small screens */
+                display: none !important;
             }
 
+            /* Show Mobile elements */
             .profile-section-mobile {
-                display: flex !important; /* Show mobile profile section */
-                order: 1; /* Make it appear at the top on mobile */
+                display: flex !important; /* Show mobile profile section on top */
+                order: 1; 
             }
             .sidebar-mobile {
-                display: flex !important; /* Show mobile sidebar on small screens */
+                display: flex !important; /* Show mobile sidebar fixed at bottom */
             }
 
             .content-section {
@@ -87,7 +92,7 @@
             }
         }
         
-        /* Sidebar for Mobile */
+        /* Sidebar for Mobile (Fixed at bottom) */
         .sidebar-mobile {
             position: fixed;
             bottom: 0;
@@ -104,7 +109,7 @@
             box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Profile Section for Mobile */
+        /* Profile Section for Mobile (Top Bar) */
         .profile-section-mobile {
             padding: 20px;
             width: 100%;
@@ -213,7 +218,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* NEW: Project Card Hover Effects */
+        /* Project Card Hover Effects */
         .project-card {
             transition: all 0.3s ease;
             cursor: pointer;
@@ -285,7 +290,7 @@
         <div class="content-section">
 
             <!-- Profile Section for Mobile (Shown only on small screens) -->
-            <div class="profile-section-mobile hidden lg:hidden">
+            <div class="profile-section-mobile lg:hidden">
                 <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
                 <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
                 <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
@@ -746,13 +751,16 @@
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const id = entry.target.getAttribute('id');
-                    const icon = document.querySelector(`.sidebar-icon[data-section="${id}"]`);
+                    // Find the corresponding icons in both desktop and mobile sidebars
+                    const desktopIcon = document.querySelector('.sidebar-desktop .sidebar-icon[data-section="' + id + '"]');
+                    const mobileIcon = document.querySelector('.sidebar-mobile .sidebar-icon[data-section="' + id + '"]');
 
                     if (entry.isIntersecting) {
-                        sidebarIcons.forEach(i => i.classList.remove('active'));
-                        if (icon) {
-                            icon.classList.add('active');
-                        }
+                        // Remove active class from all icons
+                        document.querySelectorAll('.sidebar-icon').forEach(i => i.classList.remove('active'));
+                        // Add active class to corresponding icons
+                        if (desktopIcon) desktopIcon.classList.add('active');
+                        if (mobileIcon) mobileIcon.classList.add('active');
                     }
                 });
             }, observerOptions);
@@ -763,7 +771,7 @@
 
 
             // Smooth scroll on sidebar icon click
-            sidebarIcons.forEach(icon => {
+            document.querySelectorAll('.sidebar-icon').forEach(icon => {
                 icon.addEventListener('click', (e) => {
                     e.preventDefault();
                     
