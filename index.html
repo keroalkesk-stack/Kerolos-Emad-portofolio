@@ -67,9 +67,13 @@
                 display: flex;
                 flex-direction: column;
                 padding-bottom: 70px; /* Space for the fixed sidebar at the bottom */
+                /* تم تعديل هذا الكلاس لضمان أن لا يكون هناك حواف في الموبايل */
+                padding-left: 0; 
+                padding-right: 0;
             }
             .content-section {
-                padding: 20px; 
+                /* تم تعديل الـ padding هنا ليكون أقل على الموبايل */
+                padding: 20px 10px; 
                 order: 2;
             }
             
@@ -81,6 +85,7 @@
 
             /* Show Mobile elements */
             .profile-section-mobile {
+                /* تم التأكد من أن Profile Mobile يملأ العرض */
                 display: flex !important; /* Show mobile profile section on top */
                 order: 1; 
             }
@@ -89,7 +94,7 @@
             }
 
             .content-section {
-                padding: 20px; 
+                padding: 20px 10px; 
             }
         }
         
@@ -113,7 +118,7 @@
         /* Profile Section for Mobile (Top Bar) */
         .profile-section-mobile {
             padding: 20px;
-            width: 100%;
+            width: 100%; /* تأكيد عرض 100% */
             height: auto;
             background-color: #333333;
             color: #f3f4f6;
@@ -153,7 +158,8 @@
 
         .content-section {
             background-color: #fcfbf8;
-            padding: 50px 80px;
+            /* تم تقليل الـ padding الأفقي ليكون شكله أفضل على الموبايل */
+            padding: 50px 80px; 
             min-height: 100vh; /* لضمان أن الـ scroll موجود */
             overflow-x: hidden; /* لمنع الـ horizontal scroll */
         }
@@ -168,7 +174,8 @@
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            margin-bottom: 100px;
+            /* تم تقليل المسافة البينية بين الأقسام عشان ما يبقاش فيه مساحات بيضا كبيرة */
+            margin-bottom: 50px; 
         }
         .lazy-content.visible {
             opacity: 1;
@@ -287,7 +294,7 @@
                 <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
                 <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
                 <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
-                <p class="text-sm text-gray-400 mb-6 max-w-[250px]">
+                <p class="text-sm text-gray-400 mb-6 max-w-[250px] mx-auto"> <!-- تم إضافة mx-auto لوسطنة النص -->
                     A passionate engineer with a strong background in electrical systems and a growing expertise in web development.
                 </p>
                 <div class="flex space-x-4 text-gray-400">
@@ -643,7 +650,7 @@
             <img src="images\photo_2025-09-26_05-26-38.jpg" alt="Kerolos's profile picture" class="rounded-full w-32 h-32 mb-4">
             <h2 class="text-2xl font-bold mb-2">Kerolos Emad</h2>
             <p class="text-sm text-gray-400 mb-4">Electrical Power Engineer & Web Developer</p>
-            <p class="text-sm text-gray-400 mb-6 max-w-[250px]">
+            <p class="text-sm text-gray-400 mb-6 max-w-[250px] mx-auto">
                 A passionate engineer with a strong background in electrical systems and a growing expertise in web development.
             </p>
             <div class="flex space-x-4 text-gray-400">
