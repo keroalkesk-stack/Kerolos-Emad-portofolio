@@ -306,7 +306,8 @@
             </div>
 
             <!-- Welcome Section -->
-            <section id="welcome" class="content-item lazy-content flex items-center justify-center h-[calc(100vh-100px)] lg:h-auto lg:min-h-screen">
+            <!-- تم إضافة كلاس 'initial-visible' ليظهر بشكل فوري -->
+            <section id="welcome" class="content-item lazy-content initial-visible flex items-center justify-center h-[calc(100vh-100px)] lg:h-auto lg:min-h-screen">
                 <div class="text-center">
                     <h1 class="text-6xl md:text-8xl font-extrabold text-gray-800 mb-6">Hello I'm Kerolos</h1>
                     <p class="text-xl md:text-2xl text-gray-600 mb-8">
@@ -321,7 +322,8 @@
             <div class="divider"></div>
             
             <!-- About Me Section -->
-            <section id="about-me" class="content-item lazy-content">
+             <!-- تم إضافة كلاس 'initial-visible' ليظهر بشكل فوري -->
+            <section id="about-me" class="content-item lazy-content initial-visible">
                 <h1 class="text-5xl font-extrabold text-gray-800 mb-6">About Me</h1>
                 <p class="text-lg text-gray-600 mb-8">
                     Highly motivated Electrical Engineering undergraduate with a strong passion for the
@@ -809,6 +811,10 @@
 
 
             // Lazy load content (for fade-in effect)
+            /* التعديل هنا: استخدام rootMargin أكبر (500px) في الهوامش السلبية (top/bottom) 
+                لتشغيل الـ Intersection Observer بمجرد أن يقترب المحتوى من الظهور.
+                Threshold تم زيادته لـ 0.5 للمحتوى الطويل.
+            */
             const lazyObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -816,11 +822,20 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.2 });
+            }, { rootMargin: '100px 0px 100px 0px', threshold: 0.1 }); 
 
             lazyContent.forEach(item => {
-                lazyObserver.observe(item);
+                // المحتوى اللي هيظهر على طول مش محتاج Observer
+                if (!item.classList.contains('initial-visible')) {
+                    lazyObserver.observe(item);
+                }
             });
+
+            // جعل الأقسام الأولى تظهر فوراً
+            document.querySelectorAll('.initial-visible').forEach(item => {
+                item.classList.add('visible');
+            });
+
 
             // Modal functionality
             const projectCards = document.querySelectorAll('.project-card');
