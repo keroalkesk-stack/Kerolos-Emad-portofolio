@@ -191,9 +191,15 @@
         /* Project Card Hover Effects */
         .project-card {
             transition: all 0.3s ease;
-            cursor: pointer; /* نلغي الـ pointer عشان ما يتلخبطش مع الزرار */
-            position: relative; /* عشان الزرار يبقى مظبوط */
+            cursor: pointer; 
+            position: relative; 
+            /* إضافة flexbox لترتيب العناصر داخليًا (Icon/Title, Description, Button) */
+            display: flex; /* إضافة */
+            flex-direction: column; /* إضافة */
+            justify-content: space-between; /* إضافة: لدفع الزرار لأسفل */
+            min-height: 250px; /* إضافة: لتوحيد ارتفاع الكروت تقريباً */
         }
+
         /* نلغي الـ hover effect على الكارت كله عشان الزرار هو اللي ياخد الأولوية في الضغط */
         .project-card:hover {
              transform: none;
@@ -215,6 +221,10 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center;
+            /* التعديل هنا لضمان ظهوره في الأسفل على اليمين */
+            align-self: flex-end; /* لجعله يتماشى مع نهاية الـ flex column */
+            margin-top: auto; /* لدفع الزرار لأسفل الكارت */
+            text-align: right;
         }
         .view-more-button:hover {
             transform: translateY(-2px);
@@ -583,79 +593,80 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- PLC Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project1">
-                        <!-- تم التعديل: استخدام gap-4 بدلاً من space-x-2 في الأب، وإضافة flex-shrink-0 للزرار و min-w-0 للعنصرين معاً لتفادي الازدحام -->
-                        <div class="flex items-start justify-between mb-4 gap-4"> 
-                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
-                                <i class="fas fa-cogs text-3xl text-gray-700 flex-shrink-0 mt-1"></i> <!-- أضفت mt-1 لضبط محاذاة الأيقونة -->
-                                <h3 class="font-semibold text-xl text-gray-800 break-words">Sorting System (PLC & Factory I/O)</h3>
-                            </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project1-modal').style.display = 'flex'; event.stopPropagation();">
-                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </button>
+                        <!-- تم التعديل: تجميع العنوان والأيقونة معًا -->
+                        <div class="flex items-start space-x-2 mb-4">
+                            <i class="fas fa-cogs text-3xl text-gray-700 flex-shrink-0 mt-1"></i> 
+                            <h3 class="font-semibold text-xl text-gray-800 break-words flex-grow">Sorting System (PLC & Factory I/O)</h3>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A simulation of an automated sorting system for high and low boxes.
                         </p>
+                        <!-- تم نقل الزرار إلى أسفل الكارت على اليمين -->
+                        <div class="flex justify-end mt-auto">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project1-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                     <!-- Proteus Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project2">
-                        <div class="flex items-start justify-between mb-4 gap-4"> 
-                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
-                                <i class="fas fa-fire-extinguisher text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
-                                <h3 class="font-semibold text-xl text-gray-800 break-words">Fire & Gas Detection</h3>
-                            </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project2-modal').style.display = 'flex'; event.stopPropagation();">
-                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </button>
+                        <div class="flex items-start space-x-2 mb-4">
+                            <i class="fas fa-fire-extinguisher text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                            <h3 class="font-semibold text-xl text-gray-800 break-words flex-grow">Fire & Gas Detection</h3>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A circuit simulation on Proteus to detect fire and gas with visual and audio alerts.
                         </p>
+                        <div class="flex justify-end mt-auto">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project2-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                     <!-- Arduino Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project3">
-                        <div class="flex items-start justify-between mb-4 gap-4">
-                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
-                                <i class="fas fa-microchip text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
-                                <h3 class="font-semibold text-xl text-gray-800 break-words">Distance Measurement (Arduino)</h3>
-                            </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project3-modal').style.display = 'flex'; event.stopPropagation();">
-                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </button>
+                        <div class="flex items-start space-x-2 mb-4">
+                            <i class="fas fa-microchip text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                            <h3 class="font-semibold text-xl text-gray-800 break-words flex-grow">Distance Measurement (Arduino)</h3>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             An Arduino project using an ultrasonic sensor to measure distance and display it with colored LEDs.
                         </p>
+                        <div class="flex justify-end mt-auto">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project3-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                     <!-- AutoCAD & Dialux Evo Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project4">
-                        <div class="flex items-start justify-between mb-4 gap-4"> 
-                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
-                                <i class="fas fa-building text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
-                                <h3 class="font-semibold text-xl text-gray-800 break-words">Building Lighting & Electrical Design</h3>
-                            </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project4-modal').style.display = 'flex'; event.stopPropagation();">
-                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </button>
+                        <div class="flex items-start space-x-2 mb-4">
+                            <i class="fas fa-building text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                            <h3 class="font-semibold text-xl text-gray-800 break-words flex-grow">Building Lighting & Electrical Design</h3>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A building design project using AutoCAD for electrical layouts and Dialux Evo for lighting calculations.
                         </p>
+                        <div class="flex justify-end mt-auto">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project4-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                     <!-- CrispyBite Website Project -->
                     <div class="bg-white p-6 rounded-lg shadow-md project-card" data-project-id="project5">
-                        <div class="flex items-start justify-between mb-4 gap-4"> 
-                            <div class="flex items-start space-x-2 flex-shrink min-w-0">
-                                <i class="fas fa-utensils text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
-                                <h3 class="font-semibold text-xl text-gray-800 break-words">CrispyBite Restaurant Website</h3>
-                            </div>
-                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project5-modal').style.display = 'flex'; event.stopPropagation();">
-                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                            </button>
+                        <div class="flex items-start space-x-2 mb-4">
+                            <i class="fas fa-utensils text-3xl text-gray-700 flex-shrink-0 mt-1"></i>
+                            <h3 class="font-semibold text-xl text-gray-800 break-words flex-grow">CrispyBite Restaurant Website</h3>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
                             A full-stack website developed to serve as the online presence for a restaurant, showcasing menu, contacts, and services.
                         </p>
+                        <div class="flex justify-end mt-auto">
+                            <button class="view-more-button text-red-500 hover:text-red-700 text-sm font-semibold py-1 px-3 rounded-full flex-shrink-0" onclick="document.getElementById('project5-modal').style.display = 'flex'; event.stopPropagation();">
+                                View More <i class="fas fa-arrow-right ml-1 text-xs"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -722,7 +733,7 @@
             </a>
             <a href="#contact" class="sidebar-icon" data-section="contact">
                 <i class="fas fa-envelope text-xl"></i>
-            </button>
+            </a>
         </div>
         
     </div>
