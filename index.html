@@ -16,7 +16,7 @@
             -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
         }
         
-        /* Desktop Layout (default) */
+        /* Desktop Layout */
         .main-container {
             display: grid;
             grid-template-columns: 80px 1fr 300px;
@@ -67,12 +67,14 @@
                 order: 2;
             }
             
-            .profile-section-desktop {
-                display: none; /* Hide desktop profile on mobile */
+            .profile-section-desktop,
+            .sidebar-desktop {
+                display: none; /* Hide desktop elements on small screens */
             }
 
-            .sidebar-desktop {
-                display: none; /* Hide desktop sidebar on mobile */
+            .profile-section-mobile {
+                display: flex; /* Show mobile profile section */
+                order: 1; /* Make it appear at the top on mobile */
             }
         }
 
@@ -98,19 +100,22 @@
             .sidebar-mobile {
                 display: flex; /* Show mobile sidebar on small screens */
             }
-            .profile-section-mobile {
-                display: flex;
-                padding: 20px;
-                width: 100%;
-                height: auto;
-                background-color: #333333;
-                color: #f3f4f6;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            }
         }
+
+        /* Profile Section for Mobile */
+        .profile-section-mobile {
+            display: none; /* Initially hidden, will be shown by media query */
+            padding: 20px;
+            width: 100%;
+            height: auto;
+            background-color: #333333;
+            color: #f3f4f6;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
 
         /* Shared styles */
         .sidebar-icon {
@@ -564,7 +569,7 @@
                             <h3 class="font-semibold text-xl text-gray-800">CrispyBite Restaurant Website</h3>
                         </div>
                         <p class="text-gray-600 text-sm mb-4">
-                            A full-stack website developed for a restaurant, showcasing menu, contacts, and services.
+                            A full-stack website developed to serve as the online presence for a restaurant, showcasing menu, contacts, and services.
                         </p>
                     </div>
                 </div>
